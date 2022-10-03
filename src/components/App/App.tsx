@@ -1,5 +1,8 @@
 // import { gsap } from 'gsap';
+
+// imports of stylesheet and other assets
 import './app.scss';
+import cancel from '../../assets/svg/cancel2.svg'
 
 const App = () => {
 
@@ -8,7 +11,9 @@ const App = () => {
             <div className="leftCvr">
                 <div className="logoO">STANLEY</div>
                 <div className="">
-                    <div className="">X</div>
+                    <div className="">
+                        <img src={cancel} alt="" />
+                    </div>
                 </div>
             </div>
             <div className="rightCvr">
