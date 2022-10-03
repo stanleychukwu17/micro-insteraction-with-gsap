@@ -1,35 +1,11 @@
 @forward '../../styles/globals/';
 @use '../../styles/util/' as u1;
 
-
-
-.test1 {
-    @include u1.media(">=desktop") {
-        background-color: yellow;
-
-        &::after {
-            content: "desktop"
-        }
-    }
-    @include u1.media(">=tablet", "<desktop") {
-        background-color: skyblue;
-
-        &::after {
-            content: "tablet"
-        }
-    }
-
-    @include u1.media(">=phone", "<tablet") {
-        background-color: aquamarine;
-
-        &::after {
-            content: "phone"
-        }
-    }
-}
+$color1: #fffcf8;
+$color2: #1c190c;
 
 body {
-    background-color: #1F2326 !important;
+    background-color: $color1 !important;
 }
 .AppMain {
     @include u1.block_display();
