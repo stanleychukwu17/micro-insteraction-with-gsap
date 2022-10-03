@@ -3,7 +3,7 @@
 
 $color1: #fffcf8;
 $color2: #1c190c;
-$color3: #40e9cb;
+$color3: #ecf0f1;
 
 body {
     background-color: $color1 !important;
@@ -17,7 +17,7 @@ body {
         width: clamp(6%, 150px, 250px);
         min-height: 100vh;
         border-right: 7px solid darken($color1, 5);
-        border-right: 5px solid #ecf0f1;
+        border-right: 5px solid $color3;
     
         .logoO {
             text-align: center;
@@ -26,10 +26,69 @@ body {
             letter-spacing: u1.rem(1);
             font-weight: 700;
         }
+
+        .lgAdd_Ovr {
+            display: flex;
+            justify-content: center;
+
+            & > div:first-child {
+                width: 50px;
+            }
+        }
     }
 
     .rightCvr {
         width: 80%;
         padding: 20px 0 0 30px;
+
+        .search_cvr {
+            background-color: rgb(236, 240, 241, .9);
+            display: flex;
+            padding: 20px 25px 15px;
+            border-radius: 5px;
+            font-size: u1.rem(19);
+            font-weight: bold;
+
+            & > div:first-child {
+                width: 22px;
+                margin: 0 10px 0 0;
+            }
+        }
+
+        .titleO {
+            padding: 20px 0;
+            font-size: u1.rem(35);
+            font-weight: 800;
+        }
+        .eNotes {
+            width: 300px;
+            padding: 15px 20px;
+            border-radius: 15px;
+            background-color: #40e9cb;
+            cursor: pointer;
+
+            &__top {
+                padding: 0 0 10px;
+                font-size: u1.rem(14);
+                // font-weight: 600;
+                line-height: 1.45;
+            }
+
+            &__bottom {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 0;
+
+                .date {
+                    font-size: u1.rem(13);
+                    font-weight: 800;
+                }
+                .pencil {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
     }
 }
