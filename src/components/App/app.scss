@@ -3,10 +3,33 @@
 
 $color1: #fffcf8;
 $color2: #1c190c;
+$color3: #40e9cb;
 
 body {
     background-color: $color1 !important;
+    color: $color2
 }
 .AppMain {
     @include u1.block_display();
+    display: flex;
+
+    .leftCvr {
+        width: clamp(6%, 150px, 250px);
+        min-height: 100vh;
+        border-right: 7px solid darken($color1, 5);
+        border-right: 5px solid #ecf0f1;
+    
+        .logoO {
+            text-align: center;
+            margin: 20px 0;
+            font-size: u1.rem(19);
+            letter-spacing: u1.rem(1);
+            font-weight: 700;
+        }
+    }
+
+    .rightCvr {
+        width: 80%;
+        padding: 20px 0 0 30px;
+    }
 }
