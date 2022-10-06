@@ -31,8 +31,10 @@ body {
             filter: url('#blurMe');
 
             & > div:first-child {
+                position: relative;
                 width: 50px;
                 margin: 0 auto;
+                z-index: 50;
             }
 
             .lgBalls {
@@ -40,9 +42,9 @@ body {
                 height: 23px;
                 border-radius: 100px;
                 margin: 40px auto;
-                position: relative;
-                // visibility: hidden;
-                top: 0;
+                position: absolute;
+                top: -15px;
+                left: 42.25%;
 
                 $balls : (1: #2574ce, 2: #d554b6, 3: #ffcc2d, 4: #00f3a8, 5: #a396a0);
                 $length_of_balls: length($balls) + 1;
