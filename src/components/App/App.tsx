@@ -14,6 +14,7 @@ const App = () => {
     const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5'] // the class of all the balls
     const [showBalls, setShowBalls] = useState<boolean|null>(null) // if true {animate the balls into the scene} else {animates them out of the scene}
 
+    // shows all the balls
     const showBallsFunc = useCallback(() => {
         if (lockAnimation.current) { return; }
         lockAnimation.current = true
@@ -37,6 +38,7 @@ const App = () => {
             .to(ballsArray.slice(4), {top: `${dTop.current[4] - 10}px`, duration:1, ease: "back.out(4)", onComplete: () => { lockAnimation.current = false; } })
     }, [])
 
+    // hide all the balls
     const hideBallsFunc = useCallback(() => {
         if (lockAnimation.current) {  return; }
         lockAnimation.current = true
@@ -54,15 +56,18 @@ const App = () => {
     }, [])
 
     useEffect(() => {
+        // using javascript to collect the top.px of all of the balls
         const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
         balls.forEach((el: HTMLDivElement, index: number) => {
             const elTop = Number(el.getAttribute('data-top'))
             dTop.current.push(elTop + 10)
         })
 
+        // creates a new gsap timeline
         tl.current = gsap.timeline({defaults:{duration: .5, ease: Expo.easeInOut }})
     }, [])
 
+    // calls the function that will either show all balls or hide all the balls
     useEffect(() => {
         if (lockAnimation.current) { return; }
 
