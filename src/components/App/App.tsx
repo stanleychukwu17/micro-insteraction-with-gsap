@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { gsap, Expo, Bounce } from 'gsap';
+import { gsap, Expo } from 'gsap';
 
 // imports of stylesheet and other assets
 import './app.scss';
@@ -13,27 +13,6 @@ const App = () => {
     const lockAnimation = useRef<true|false>(false)
     const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5']
     const [showBalls, setShowBalls] = useState<boolean|null>(null)
-
-
-    useEffect(() => {
-        const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
-        balls.forEach((el: HTMLDivElement, index: number) => {
-            const elTop = Number(el.getAttribute('data-top'))
-            dTop.current.push(elTop + 10)
-        })
-
-        tl.current = gsap.timeline({defaults:{duration: .5, ease: Expo.easeInOut }})
-    }, [])
-
-    useEffect(() => {
-        if (lockAnimation.current) { return; }
-
-        if (showBalls) {
-            showBallsFunc()
-        } else if (showBalls === false) {
-            hideBallsFunc()
-        }
-    }, [showBalls])
 
     const showBallsFunc = useCallback(() => {
         if (lockAnimation.current) { return; }
@@ -73,6 +52,26 @@ const App = () => {
             .to(ballsArray.slice(1), {ease:Expo.easeOut, top: `${dTop.current[0] - 10}px`})
             .to(ballsArray, {duration:.2, ease:Expo.easeOut, top: `-15px`, onComplete: () => { lockAnimation.current = false; } })
     }, [])
+
+    useEffect(() => {
+        const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
+        balls.forEach((el: HTMLDivElement, index: number) => {
+            const elTop = Number(el.getAttribute('data-top'))
+            dTop.current.push(elTop + 10)
+        })
+
+        tl.current = gsap.timeline({defaults:{duration: .5, ease: Expo.easeInOut }})
+    }, [])
+
+    useEffect(() => {
+        if (lockAnimation.current) { return; }
+
+        if (showBalls) {
+            showBallsFunc()
+        } else if (showBalls === false) {
+            hideBallsFunc()
+        }
+    }, [showBalls, hideBallsFunc, showBallsFunc])
 
     return (
         <div className="AppMain">
