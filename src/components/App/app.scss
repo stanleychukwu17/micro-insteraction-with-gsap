@@ -28,11 +28,19 @@ body {
         }
 
         .lgAdd_Ovr {
-            display: flex;
             justify-content: center;
 
             & > div:first-child {
                 width: 50px;
+                margin: 0 auto;
+            }
+
+            .lgBalls {
+                width: 25px;
+                height: 25px;
+                border-radius: 100%;
+                background-color: #2574ce;
+                margin: 24px auto;
             }
         }
     }

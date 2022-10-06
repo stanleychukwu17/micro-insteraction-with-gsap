@@ -13,9 +13,8 @@ const App = () => {
             <div className="leftCvr">
                 <div className="logoO">STANLEY</div>
                 <div className="lgAdd_Ovr">
-                    <div className="">
-                        <img src={cancel} alt="" />
-                    </div>
+                    <div className=""><img src={cancel} alt="" /></div>
+                    <div className="lgBalls"></div>
                 </div>
             </div>
             <div className="rightCvr">
