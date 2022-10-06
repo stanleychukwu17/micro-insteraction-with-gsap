@@ -28,7 +28,7 @@ body {
         }
 
         .lgAdd_Ovr {
-            justify-content: center;
+            filter: url('#blurMe');
 
             & > div:first-child {
                 width: 50px;
@@ -39,13 +39,22 @@ body {
                 width: 23px;
                 height: 23px;
                 border-radius: 100px;
-                background-color: #2574ce;
                 margin: 40px auto;
+                position: relative;
 
-                &.ball2 { background-color: #d554b6; }
-                &.ball3 { background-color: #ffcc2d; }
-                &.ball4 { background-color: #00f3a8; }
-                &.ball5 { background-color: #a396a0; }
+                $balls : (1: #2574ce, 2: #d554b6, 3: #ffcc2d, 4: #00f3a8, 5: #a396a0);
+                $length_of_balls: length($balls) + 1;
+
+                @each $number, $color in $balls {
+                    &.ball#{$number} {
+                        background-color: $color;
+                        z-index: $length_of_balls - $number;
+                    }
+                }
+                // &.ball2 { background-color: #d554b6; }
+                // &.ball3 { background-color: #ffcc2d; }
+                // &.ball4 { background-color: #00f3a8; }
+                // &.ball5 { background-color: #a396a0; z-index: 0; }
             }
         }
     }

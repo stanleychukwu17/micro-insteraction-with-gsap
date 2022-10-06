@@ -1,4 +1,5 @@
-// import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 // imports of stylesheet and other assets
 import './app.scss';
@@ -7,6 +8,12 @@ import search from '../../assets/svg/zoom.svg'
 import pencil from '../../assets/svg/pencil.svg'
 
 const App = () => {
+    const tl = useRef<gsap.core.Timeline>()
+
+    useEffect(() => {
+        tl.current = gsap.timeline()
+        console.log('let the animation begin')
+    }, [])
 
     return (
         <div className="AppMain">
@@ -14,13 +21,32 @@ const App = () => {
                 <div className="logoO">STANLEY</div>
                 <div className="lgAdd_Ovr">
                     <div className=""><img src={cancel} alt="" /></div>
-                    <div className="lgBalls"></div>
+                    <div className="lgBalls ball1"></div>
                     <div className="lgBalls ball2"></div>
                     <div className="lgBalls ball3"></div>
                     <div className="lgBalls ball4"></div>
                     <div className="lgBalls ball5"></div>
                 </div>
 
+                <svg>
+                    <defs>
+                        <filter id="blurMe">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+                            <feColorMatrix
+                                in="blur"
+                                mode="matrix"
+                                values="1 0 0 0 0     0 1 0 0 0     0 0 1 0 0    0 0 0 20 -9"
+                                result="colorMatrix"
+                            />
+                            <feComposite
+                                in="SourceGraphic"
+                                in2="colorMatrix"
+                                mode="matrix"
+                                operator="atop"
+                            />
+                        </filter>
+                    </defs>
+                </svg>
             </div>
             <div className="rightCvr">
                 <div className="search_cvr">
