@@ -48,6 +48,7 @@ body {
                 left: 42.25%;
                 cursor: pointer;
 
+                // arrange all the balls we want into an array, then get the lengths of all the balls, this length will be used to calculate the z-index of each of the balls
                 $balls : (1: #2574ce, 2: #d554b6, 3: #ffcc2d, 4: #00f3a8, 5: #a396a0);
                 $length_of_balls: length($balls) + 1;
 
