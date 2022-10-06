@@ -41,6 +41,8 @@ body {
                 border-radius: 100px;
                 margin: 40px auto;
                 position: relative;
+                // visibility: hidden;
+                top: 0;
 
                 $balls : (1: #2574ce, 2: #d554b6, 3: #ffcc2d, 4: #00f3a8, 5: #a396a0);
                 $length_of_balls: length($balls) + 1;
@@ -51,10 +53,6 @@ body {
                         z-index: $length_of_balls - $number;
                     }
                 }
-                // &.ball2 { background-color: #d554b6; }
-                // &.ball3 { background-color: #ffcc2d; }
-                // &.ball4 { background-color: #00f3a8; }
-                // &.ball5 { background-color: #a396a0; z-index: 0; }
             }
         }
     }

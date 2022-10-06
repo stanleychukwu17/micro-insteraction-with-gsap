@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { gsap, Expo, Bounce } from 'gsap';
 
 // imports of stylesheet and other assets
 import './app.scss';
@@ -9,10 +9,36 @@ import pencil from '../../assets/svg/pencil.svg'
 
 const App = () => {
     const tl = useRef<gsap.core.Timeline>()
+    const dTop = useRef<number[]>([])
+    const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5']
+
 
     useEffect(() => {
-        tl.current = gsap.timeline()
-        console.log('let the animation begin')
+
+        const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
+        balls.forEach((el: HTMLDivElement, index: number) => {
+            const elTop = el.offsetTop
+            dTop.current.push(elTop)
+        })
+
+        gsap.set('.lgBalls', {position: 'absolute', left: '42.25%', top: '-12px', visibility: 'visible'});
+
+        tl.current = gsap.timeline({defaults:{duration: 1, ease: Expo.easeInOut }})
+        tl.current.to(ballsArray, {top: `${dTop.current[0]}px` })
+            .to(ballsArray.slice(0), {top: `${dTop.current[0] - 10}px`, ease: Bounce.easeOut })
+
+            .to(ballsArray.slice(1), {top: `${dTop.current[1]}px`, delay:-1})
+            .to(ballsArray.slice(1), {top: `${dTop.current[1] - 10}px`, ease: Bounce.easeOut })
+
+            .to(ballsArray.slice(2), {top: `${dTop.current[2]}px`, delay:-1})
+            .to(ballsArray.slice(2), {top: `${dTop.current[2] - 10}px`, ease: Bounce.easeOut })
+
+            .to(ballsArray.slice(3), {top: `${dTop.current[3]}px`, delay:-1})
+            .to(ballsArray.slice(3), {top: `${dTop.current[3] - 10}px`, ease: Bounce.easeOut })
+
+            .to(ballsArray.slice(4), {top: `${dTop.current[4]}px`, delay:-1 })
+            .to(ballsArray.slice(4), {top: `${dTop.current[4] - 10}px`, ease: Bounce.easeOut })
+
     }, [])
 
     return (
