@@ -9,10 +9,10 @@ import pencil from '../../assets/svg/pencil.svg'
 
 const App = () => {
     const tl = useRef<gsap.core.Timeline>({} as gsap.core.Timeline)
-    const dTop = useRef<number[]>([])
-    const lockAnimation = useRef<true|false>(false)
-    const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5']
-    const [showBalls, setShowBalls] = useState<boolean|null>(null)
+    const dTop = useRef<number[]>([]) // stores the top values for each of the balls, i.e by how many pixel to animate the top of each ball
+    const lockAnimation = useRef<true|false>(false) // useFull for me to lock any disruption when an animation is going on
+    const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5'] // the class of all the balls
+    const [showBalls, setShowBalls] = useState<boolean|null>(null) // if true {animate the balls into the scene} else {animates them out of the scene}
 
     const showBallsFunc = useCallback(() => {
         if (lockAnimation.current) { return; }
