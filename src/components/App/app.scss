@@ -35,6 +35,7 @@ body {
                 width: 50px;
                 margin: 0 auto;
                 z-index: 50;
+                cursor: pointer;
             }
 
             .lgBalls {
@@ -45,6 +46,7 @@ body {
                 position: absolute;
                 top: -15px;
                 left: 42.25%;
+                cursor: pointer;
 
                 $balls : (1: #2574ce, 2: #d554b6, 3: #ffcc2d, 4: #00f3a8, 5: #a396a0);
                 $length_of_balls: length($balls) + 1;
