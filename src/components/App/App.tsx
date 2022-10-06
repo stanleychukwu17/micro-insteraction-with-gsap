@@ -15,7 +15,12 @@ const App = () => {
                 <div className="lgAdd_Ovr">
                     <div className=""><img src={cancel} alt="" /></div>
                     <div className="lgBalls"></div>
+                    <div className="lgBalls ball2"></div>
+                    <div className="lgBalls ball3"></div>
+                    <div className="lgBalls ball4"></div>
+                    <div className="lgBalls ball5"></div>
                 </div>
+
             </div>
             <div className="rightCvr">
                 <div className="search_cvr">
@@ -37,6 +42,7 @@ const App = () => {
                     </div>
                 </div>
             </div>
+
         </div>
     )
 }
