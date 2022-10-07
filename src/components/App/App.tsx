@@ -60,14 +60,14 @@ const App = () => {
         const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
         balls.forEach((el: HTMLDivElement, index: number) => {
             const elTop = Number(el.getAttribute('data-top'))
-            dTop.current.push(elTop + 10)
+            dTop.current.push(elTop + 10) // adding 10 because of extra animation in the showBallsFunc() and hideBallsFunc()
         })
 
         // creates a new gsap timeline
         tl.current = gsap.timeline({defaults:{duration: .5, ease: Expo.easeInOut }})
     }, [])
 
-    // calls the function that will either show all balls or hide all the balls
+    // calls the function that will either show all balls or hide all balls
     useEffect(() => {
         if (lockAnimation.current) { return; }
 
@@ -95,16 +95,19 @@ const App = () => {
                     <div className="lgBalls ball5" data-top={312}></div>
                 </div>
 
+                {/* this svg element is used to define the filters that will be applied to the parent of the balls element, i.e .lgAdd_Ovr */}
                 <svg>
                     <defs>
                         <filter id="blurMe">
                             <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+                            {/* the trick for this feColorMatrix is at the last value, once you begin to play with the 20 and -9, you'll understand how the animation works */}
                             <feColorMatrix
                                 in="blur"
                                 mode="matrix"
                                 values="1 0 0 0 0     0 1 0 0 0     0 0 1 0 0    0 0 0 20 -9"
                                 result="colorMatrix"
                             />
+                            {/* the feComposite removes the blur effect from the image icon, i.e the element with class of .lgBtn */}
                             <feComposite
                                 in="SourceGraphic"
                                 in2="colorMatrix"
