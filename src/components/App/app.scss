@@ -55,7 +55,7 @@ body {
                 @each $number, $color in $balls {
                     &.ball#{$number} {
                         background-color: $color;
-                        z-index: $length_of_balls - $number;
+                        z-index: $length_of_balls - $number; // the higher the $number, the 'lower' the z-index value
                     }
                 }
             }
