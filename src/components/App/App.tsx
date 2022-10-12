@@ -16,6 +16,7 @@ const App = () => {
     const lockAnimation = useRef<true|false>(false) // useFull for me to lock any disruption when an animation is going on
     const [showBalls, setShowBalls] = useState<boolean|null>(null) // if true {animate the balls into the scene} else {animates them out of the scene}
 
+
     // shows all the balls
     const showBallsFunc = useCallback(() => {
         if (lockAnimation.current) { return; }
@@ -24,17 +25,20 @@ const App = () => {
         gsap.to('.lgBtn', {rotate:675, scale:.7, duration: .6,  transformOrigin: 'center'})
         gsap.to('.lgBtn', {scale:1, duration: .5, delay:.3})
 
-        tl.current.to(ballsArray, {top: `${dTop.current[0]}px` })
-            .to(ballsArray.slice(0), {top: `${dTop.current[0] - 10}px`, duration:1, ease: "back.out(4)" })
 
+        // all the -10 is the extra animation that takes the balls/ball up, 
+        tl.current.to(ballsArray, {top: `${dTop.current[0]}px` })
+            .to(ballsArray, {top: `${dTop.current[0] - 10}px`, duration:1, ease: "back.out(4)"})
+
+            // the delay:-.5 cause the next ball to animate downward before the last animated balls gets a chance to settle, the result is the beautiful effect that makes it look like the current animation is laying(giving birth) to the next ball
             .to(ballsArray.slice(1), {top: `${dTop.current[1]}px`, delay:-.5})
-            .to(ballsArray.slice(1), {top: `${dTop.current[1] - 10}px`, duration:1, ease: "back.out(4)" })
+            .to(ballsArray.slice(1), {top: `${dTop.current[1] - 10}px`, duration:1, ease: "back.out(4)"})
 
             .to(ballsArray.slice(2), {top: `${dTop.current[2]}px`, delay:-.5})
-            .to(ballsArray.slice(2), {top: `${dTop.current[2] - 10}px`, duration:1, ease: "back.out(4)" })
+            .to(ballsArray.slice(2), {top: `${dTop.current[2] - 10}px`, duration:1, ease: "back.out(4)"})
 
             .to(ballsArray.slice(3), {top: `${dTop.current[3]}px`, delay:-.5})
-            .to(ballsArray.slice(3), {top: `${dTop.current[3] - 10}px`, duration:1, ease: "back.out(4)" })
+            .to(ballsArray.slice(3), {top: `${dTop.current[3] - 10}px`, duration:1, ease: "back.out(4)"})
 
             .to(ballsArray.slice(4), {top: `${dTop.current[4]}px`, delay:-.5})
             .to(ballsArray.slice(4), {top: `${dTop.current[4] - 10}px`, duration:1, ease: "back.out(4)", onComplete: () => { lockAnimation.current = false; } })
@@ -49,8 +53,9 @@ const App = () => {
             gsap.set('.lgBtn', {rotate:0})
         }})
 
+        // starts from the last ball and takes the ship(i.e the balls) backwards
         tl.current
-            .to(ballsArray.slice(4), {ease:Expo.easeOut, top: `${dTop.current[3] - 10}px` })
+            .to(ballsArray.slice(4), {ease:Expo.easeOut, top: `${dTop.current[3] - 10}px`})
             .to(ballsArray.slice(3), {ease:Expo.easeOut, top: `${dTop.current[2] - 10}px`})
             .to(ballsArray.slice(2), {ease:Expo.easeOut, top: `${dTop.current[1] - 10}px`})
             .to(ballsArray.slice(1), {ease:Expo.easeOut, top: `${dTop.current[0] - 10}px`})
