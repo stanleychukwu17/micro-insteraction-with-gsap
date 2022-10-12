@@ -7,11 +7,13 @@ import cancel from '../../assets/svg/cancel2.svg'
 import search from '../../assets/svg/zoom.svg'
 import pencil from '../../assets/svg/pencil.svg'
 
+// the class of all the balls that will be animated
+const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5']
+
 const App = () => {
     const tl = useRef<gsap.core.Timeline>({} as gsap.core.Timeline)
     const dTop = useRef<number[]>([]) // stores the top values for each of the balls, i.e by how many pixel to animate the top of each ball
     const lockAnimation = useRef<true|false>(false) // useFull for me to lock any disruption when an animation is going on
-    const ballsArray = ['.ball1', '.ball2', '.ball3', '.ball4', '.ball5'] // the class of all the balls
     const [showBalls, setShowBalls] = useState<boolean|null>(null) // if true {animate the balls into the scene} else {animates them out of the scene}
 
     // shows all the balls
@@ -55,6 +57,7 @@ const App = () => {
             .to(ballsArray, {duration:.2, ease:Expo.easeOut, top: `-15px`, onComplete: () => { lockAnimation.current = false; } })
     }, [])
 
+    // initialization! creates a new timeline, also collects the top.px of each balls
     useEffect(() => {
         // using javascript to collect the top.px of all of the balls
         const balls = document.querySelectorAll('.lgBalls') as NodeListOf<HTMLDivElement>
